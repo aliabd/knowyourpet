@@ -1,0 +1,58 @@
+body {
+  background: #ba6c7a;
+}
+
+.center {
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.form-input {
+  width:400px;
+  padding:20px;
+  background: #ba6c7a;
+}
+
+.form-input input {
+  display:none;
+
+}
+.form-input label {
+  display:block;
+  width:45%;
+  height:45px;
+  margin-left: 25%;
+  line-height:50px;
+  text-align:center;
+  background:#1172c2;
+
+  color:#fff;
+  font-size:15px;
+  font-family:"Open Sans",sans-serif;
+  text-transform:Uppercase;
+  font-weight:600;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.form-input img {
+  width:100%;
+  display:none;
+}
+
+.pet-class {
+    z-index: -1;
+    position: fixed;
+    font-size: 3.5vw;
+    color: #6a0e7a;
+    text-align:
+    justify;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.pet-class-text {
+    overflow-x: clip;
+}
