@@ -31,6 +31,8 @@ function classify(event){
 
    promise.then(b64 => {
         // classify with gradio api
+        document.getElementById('progress').innerHTML = "Classifying...";
+        document.getElementById('progress').style.display = "block";
         fetch('https://hf.space/embed/jph00/pets/+/api/predict/',
             { method: "POST", body: JSON.stringify(
             {"data":[ b64 ]}),
@@ -47,11 +49,13 @@ function classify(event){
             {
                 text += petClass + " ";
             }
+            document.getElementById('progress').innerHTML = "";
+            document.getElementById('progress').style.display = "none";
             for (var i=0; i<20; i++){
                 document.getElementById('pet-class-'+i).innerHTML = (text);
              };
 
-//             showQuestion(petClass);
+             showQuestion(petClass);
 
           });
 
@@ -60,4 +64,46 @@ function classify(event){
 }
 
 
-//petClassfunction classify(event){
+function showQuestion(label) {
+    petClass = label;
+    document.getElementById('search-box').style.display = "block";
+}
+
+
+$(document).keypress(function(e) {
+  if (e.which == 13) {
+    search();
+  }
+})
+
+$('#search-btn').click(function() {
+    search();
+    return false;
+})
+
+var answer;
+
+function search() {
+    document.getElementById('progress').innerHTML = "answering...";
+    document.getElementById('progress').style.display = "block";
+    var question_input = document.getElementById('search').value;
+
+    fetch('https://hf.space/embed/tyang/electra_wikipedia_qa/+/api/predict/',
+    { method: "POST", body: JSON.stringify({"data": [ petClass, question_input]}),
+            headers: { "Content-Type": "application/json" } }).then(function(response)
+             { return response.json(); }).then(
+             function(json_response){
+             console.log(json_response)
+             answer = json_response["data"][0];
+             link = json_response["data"][1];
+             link_pre = "For more info, click <a href='"
+             link_post = "'>here</a>."
+             link = link_pre + link + link_post;
+             answer += "\n\n" + link;
+             document.getElementById('progress').innerHTML = ""
+             document.getElementById('progress').style.display = "none";
+             document.getElementById('answer').innerHTML = answer;
+             document.getElementById('answer').style.display = "block";
+             console.log(answer);
+             });
+}

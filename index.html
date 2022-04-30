@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <title>Know Your Pet</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 </head>
 <body>
 
+    <div class="progress" id="progress">
+    </div>
 
     <div class="center">
         <!--  IMAGE UPLOADER  -->
@@ -41,6 +45,18 @@
             <div id="pet-class-18" class="pet-class-text"></div>
             <div id="pet-class-19" class="pet-class-text"></div>
         </div>
+
+        <div id="search-box" class='search-box' style="display: none">
+            <input id="search" class="search-text" type="text" autocomplete="off" placeholder="What are they known for?" onfocus="this.placeholder = ''"
+        onblur="this.placeholder = 'What are they known for?'" />
+            <a href="#" class = "search-btn" id="search-btn">
+              <i class="fas fa-search"></i>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="answer" id="answer">
     </div>
 
 
